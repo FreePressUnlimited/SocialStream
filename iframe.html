@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:5000/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body bgcolor="#000" cz-shortcut-listen="true">
+<center>
+<div width="100%" height="100%">
+    <div style="position: relative; z-index:1; top:0;">
+        <img id="image" src="" style="max-width: 100%;" height="630">
+        <span id="banner" style="position:fixed; bottom:0; left:0; z-index: 3; background-color: #fff; width:100%; height:50px; padding-top: 0;"></span>
+    </div>
+</div>
+</center>
+<script>
+    var myIndex=0;
+    {% autoescape false %}
+    var mydata={{chatdata}}
+    {% endautoescape %}
+    console.log(mydata.length);
+    carousel();
+
+    function carousel() {
+
+
+        if (myIndex>mydata.length-1){
+            location.reload();
+        }
+
+        console.log(myIndex);
+        document.getElementById("image").src=mydata[myIndex][0];
+        document.getElementById("banner").innerHTML='<h1>' + mydata[myIndex][2] + ' on ' + mydata[myIndex][1] + '</h1>';
+        
+        myIndex++;
+    
+        setTimeout(carousel,30000);
+    }
+</script>
+
+</body></html>
